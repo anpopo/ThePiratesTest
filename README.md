@@ -70,7 +70,7 @@
     - Post 방식 
     - 1개의 json타입의 데이터를 받아서 DB에 인서트
     
-    - http://localhost:8081/markets
+    - http://localhost:8081/marketRegister
     - {
      "name": "인어수산",
      "owner": "장인어",
@@ -181,7 +181,7 @@
 
     ### E. 점포 삭제 API
     
-    - http://localhost:8081/markets/1
+    - http://localhost:8081/marketDelete/1
     
     - @Pathvariable를 사용
     - Get 방식으로 요청을 처리
