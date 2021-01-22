@@ -41,27 +41,28 @@ public class MarketController {
     }
 
     @GetMapping("/markets")
-    public List< Map<String, Object>> findAll() {
+    public String findAll() {
         List<Market> markets = service.selectAllMarket();
-        List<Map<String, Object>> marketList = null;
+
+        Gson gson = new Gson();
 
         if (markets != null) {
-            marketList= new ArrayList<>();
+            JsonArray jsonArr = new JsonArray();
 
             for (Market market : markets) {
-                Map<String, Object> marketInfo = new HashMap<>();
-                marketInfo.put("name",market.getName());
-                marketInfo.put("description",market.getDescription());
-                marketInfo.put("level",market.getLevel());
-                marketInfo.put("businessStatus",market.getBusinessStatus());
 
-                marketList.add(marketInfo);
+                JsonObject jsonObj = new JsonObject();
+                jsonObj.addProperty("name", market.getName());
+                jsonObj.addProperty("description", market.getDescription());
+                jsonObj.addProperty("level", market.getLevel());
+                jsonObj.addProperty("businessStatus", market.getBusinessStatus());
+
+                jsonArr.add(jsonObj);
             }
-        } else {
-            marketList.clear();
-        }
 
-        return marketList;
+            return gson.toJson(jsonArr);
+        }
+        return null;
     }
 
     @GetMapping("/markets/{id}")
