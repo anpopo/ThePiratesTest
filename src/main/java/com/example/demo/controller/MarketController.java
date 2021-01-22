@@ -25,12 +25,12 @@ public class MarketController {
         this.service = service;
     }
 
-    @PostMapping("/markets")
+    @PostMapping("/marketRegister")
     public int marketRegister(@RequestBody Market market) {
         return service.marketRegister(market);
     }
 
-    @DeleteMapping("/markets/{id}")
+    @DeleteMapping("/marketDelete/{id}")
     public int marketDelete(@PathVariable int id) {
         return service.marketDelete(id);
     }
